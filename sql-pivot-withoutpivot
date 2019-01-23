@@ -1,3 +1,11 @@
+/*
+Solution to the problem found here https://www.hackerrank.com/challenges/occupations/problem
+posted by user xinmin_wang in the discussion forum https://www.hackerrank.com/challenges/occupations/forum
+very clear, concise, and easy to understand example
+
+currently practicing orcale, which is why I favored this answer over the similar MYSQL responses
+*/
+
 select * 
 from ( 
     select min(doctor) d, 
@@ -8,6 +16,7 @@ from (
           CASE WHEN Occupation = 'Professor' THEN name END AS Professor , 
           CASE WHEN Occupation = 'Singer' THEN name END AS Singer , 
           CASE WHEN Occupation = 'Actor' THEN name END AS Actor , 
-          RANK() OVER (PARTITION BY Occupation order by name) AS row_rank FROM Occupations )x               group by row_rank 
+          RANK() OVER (PARTITION BY Occupation order by name) AS row_rank FROM Occupations )x               
+          group by row_rank 
 ) 
 order by d, p, s, a ;
